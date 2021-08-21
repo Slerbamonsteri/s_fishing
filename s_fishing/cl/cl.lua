@@ -37,8 +37,6 @@ AddEventHandler('s_fishing:start', function()
             else
                 ESX.ShowNotification('You have to decide, whether you want to swim or fish')
             end
-        else
-            ESX.ShowNotification('Why the fuck do you try to fish in vehicle')
         end
     else
         ESX.ShowNotification('I can´t fish here...')
