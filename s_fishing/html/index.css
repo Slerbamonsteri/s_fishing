@@ -1,0 +1,56 @@
+
+body {
+    background: none !important;
+}
+
+#container {
+    font-size: 20px;
+    padding: 25px;
+    color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(44, 44, 44, 0);
+}
+
+
+
+.Buttons {
+    width: 75px;
+    height: 75px;
+    background-color: rgba(79, 79, 79, 150);
+    border-radius: 10px 10px;
+    border: 1px solid rgb(163, 163, 163);
+    box-shadow: 5px;
+    padding: 1px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    -webkit-box-shadow: inset 0 0px 0 #000000, 4px 8px 0 #000000;
+    margin-left: 60%;
+}
+
+.timer1 {
+    margin-top: 30px;
+    height: 5px;
+    width: 500px;
+    position: absolute;
+    z-index: 2;
+    background-color: rgb(143, 98, 0);
+    margin-left: 36.9791666667%;
+    margin-top: 25%;
+    border-radius: 10px 10px;
+}
+
+.timer2 {
+    margin-top: 30px;
+    height: 5px;
+    width: 100px;
+    position: absolute;
+    z-index: 3;
+    background-color: rgb(255, 174, 0);
+    margin-left: 36.9791666667%;
+    margin-top: 25%;
+    border-radius: 10px 10px;
+}
