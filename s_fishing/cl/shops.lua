@@ -132,24 +132,25 @@ Citizen.CreateThread(function()
 	while true do
 	Citizen.Wait(5)
 	local playerped = GetEntityCoords(PlayerPedId())
-	local dist = #(vector3(-1845.49, -1196.50, 19.18) - playerped)
-	local ClockTime = GetClockHours()
-	local x,y,z = -1845.49, -1196.50, 19.18
-	local w = 1000
-        if dist < 5 then
-            Draw3DText2(x, y, z + 0.5, "[~r~E~w~] Open shop | [~g~G~w~] Sell your fishes")
-            if IsControlJustReleased(0, 38) then 
-                if ClockTime >= 6 -1 and ClockTime < 22 then
-                    fishshop()
-                else
-                    TriggerEvent('mythic_notify:client:slerba', { type = 'error', length = 7000, text = 'Shop is currently unavailable' })
-                end
-            elseif IsControlJustPressed(0, 47) then
-                shopsell()
-            end
-        else
-            Citizen.Wait(w)
-        end
+		for k,v in pairs(shopnpc) do
+			local dist = #(vector3(v.x, v.y, v.z) - playerped)
+			local ClockTime = GetClockHours()
+			local w = 1000
+			if dist < 5 then
+			    Draw3DText2(v.x, v.y, v.z + 0.5, "[~r~E~w~] Open shop | [~g~G~w~] Sell your fishes")
+			    if IsControlJustReleased(0, 38) then 
+				if ClockTime >= 6 -1 and ClockTime < 22 then
+				    fishshop()
+				else
+				    TriggerEvent('mythic_notify:client:slerba', { type = 'error', length = 7000, text = 'Shop is currently unavailable' })
+				end
+			    elseif IsControlJustPressed(0, 47) then
+				shopsell()
+			    end
+			else
+			    Citizen.Wait(w)
+			end
+		end
 	end
 end)
 
@@ -162,14 +163,17 @@ end)
 --Blip and npc stuff
 Citizen.CreateThread(function()
 	spawnshopnpc()
-    sellblip = AddBlipForCoord(-1845.49, -1196.50, 19.18)
-	SetBlipSprite(sellblip, 356)
-	SetBlipColour(sellblip, 83)
-	SetBlipScale(sellblip, 0.8)
-	SetBlipAsShortRange(sellblip, true)
-	BeginTextCommandSetBlipName('STRING')
-	AddTextComponentString('Fish market') -- set blip's "name"
-	EndTextCommandSetBlipName(sellblip)
+	Wait(300)
+	for k,v in pairs(shopnpc) do
+		sellblip = AddBlipForCoord(v.x, v.y, v.z)
+		SetBlipSprite(sellblip, 356)
+		SetBlipColour(sellblip, 83)
+		SetBlipScale(sellblip, 0.8)
+		SetBlipAsShortRange(sellblip, true)
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentString('Fish market') -- set blip's "name"
+		EndTextCommandSetBlipName(sellblip)
+	end
 end)
 
 --3D text stuff
